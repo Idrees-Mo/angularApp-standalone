@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { RegisterComponent } from './auth/components/register/register.component';
 
 @Component({
@@ -7,6 +7,6 @@ import { RegisterComponent } from './auth/components/register/register.component
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   standalone: true,
-  imports: [RegisterComponent, RouterOutlet],
+  imports: [RegisterComponent, RouterOutlet, RouterLink],
 })
 export class AppComponent {}
