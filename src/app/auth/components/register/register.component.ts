@@ -6,6 +6,7 @@ import { register } from '../../store/actions';
 import { RouterLink } from '@angular/router';
 import { selectIsSubmitting } from '../../store/reducers';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'mc-register',
@@ -22,7 +23,11 @@ export class RegisterComponent {
 
   $isSubmitting = this.store.select(selectIsSubmitting);
 
-  constructor(private fb: FormBuilder, private store: Store) {}
+  constructor(
+    private fb: FormBuilder,
+    private store: Store,
+    private authService: AuthService
+  ) {}
 
   onSubmit() {
     const request: RegisterRequestInterface = {
@@ -30,5 +35,9 @@ export class RegisterComponent {
     };
 
     this.store.dispatch(register({ request }));
+
+    this.authService.register(request).subscribe((res) => {
+      console.warn({ res });
+    });
   }
 }
