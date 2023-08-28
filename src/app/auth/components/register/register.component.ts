@@ -4,7 +4,10 @@ import { RegisterRequestInterface } from '../../types/registerRequest.interface'
 import { Store } from '@ngrx/store';
 import { authActions } from '../../store/actions';
 import { RouterLink } from '@angular/router';
-import { selectIsSubmitting } from '../../store/reducers';
+import {
+  selectIsSubmitting,
+  selectValidationErrors,
+} from '../../store/reducers';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 
@@ -21,7 +24,8 @@ export class RegisterComponent {
     password: ['', Validators.required],
   });
 
-  $isSubmitting = this.store.select(selectIsSubmitting);
+  isSubmitting$ = this.store.select(selectIsSubmitting);
+  validationError$ = this.store.select(selectValidationErrors);
 
   constructor(
     private fb: FormBuilder,
