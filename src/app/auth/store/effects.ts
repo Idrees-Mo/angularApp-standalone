@@ -11,6 +11,7 @@ export const registerEffect = createEffect(
     return actions$.pipe(
       ofType(authActions.register),
       switchMap(({ request }) => {
+        // swithMap would return an observable
         return authService.register(request).pipe(
           map((currentUser: CurrentUserInterface) => {
             return authActions.registerSuccess({ currentUser });

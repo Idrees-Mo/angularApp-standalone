@@ -10,6 +10,7 @@ import {
 } from '../../store/reducers';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
+import { combineLatest } from 'rxjs';
 
 @Component({
   selector: 'mc-register',
@@ -24,9 +25,10 @@ export class RegisterComponent {
     password: ['', Validators.required],
   });
 
-  isSubmitting$ = this.store.select(selectIsSubmitting);
-  validationError$ = this.store.select(selectValidationErrors);
-
+  data$ = combineLatest({
+    isSubmitting: this.store.select(selectIsSubmitting),
+    validationError: this.store.select(selectValidationErrors),
+  });
   constructor(
     private fb: FormBuilder,
     private store: Store,
