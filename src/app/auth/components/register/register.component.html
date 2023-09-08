@@ -1,7 +1,4 @@
 <ng-container *ngIf="data$ | async as data">
-  <div *ngIf="data.validationError">
-    {{ data.validationError | json }}
-  </div>
   <div class="auth-page">
     <div class="container page">
       <div class="row">
@@ -10,6 +7,11 @@
           <p class="text-xs-center">
             <a href="/login">Have an account?</a>
           </p>
+          <mc-backend-error-message
+            *ngIf="data.backendErrors"
+            [backendErrors]="data.backendErrors"
+          >
+          </mc-backend-error-message>
           <form
             [formGroup]="form"
             (ngSubmit)="onSubmit()"

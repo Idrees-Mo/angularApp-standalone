@@ -4,19 +4,17 @@ import { RegisterRequestInterface } from '../../types/registerRequest.interface'
 import { Store } from '@ngrx/store';
 import { authActions } from '../../store/actions';
 import { RouterLink } from '@angular/router';
-import {
-  selectIsSubmitting,
-  selectValidationErrors,
-} from '../../store/reducers';
+import { selectIsSubmitting, selectBackendErrors } from '../../store/reducers';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { combineLatest } from 'rxjs';
+import { BackendErrorMessage } from 'src/app/shared/components/backendErrorMessage/backendErrorMessage';
 
 @Component({
   selector: 'mc-register',
   templateUrl: './register.component.html',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, CommonModule],
+  imports: [ReactiveFormsModule, RouterLink, CommonModule, BackendErrorMessage],
 })
 export class RegisterComponent {
   form = this.fb.nonNullable.group({
@@ -27,7 +25,7 @@ export class RegisterComponent {
 
   data$ = combineLatest({
     isSubmitting: this.store.select(selectIsSubmitting),
-    validationError: this.store.select(selectValidationErrors),
+    backendErrors: this.store.select(selectBackendErrors),
   });
   constructor(
     private fb: FormBuilder,
