@@ -3,9 +3,9 @@
     <div class="container page">
       <div class="row">
         <div class="col-md-6 offset-md-3 col-xs-12">
-          <h1 class="text-xs-center">Sign up</h1>
+          <h1 class="text-xs-center">Login</h1>
           <p class="text-xs-center">
-            <a routerLink="/login">Have an account?</a>
+            <a routerLink="/register">Don't have an account?</a>
           </p>
           <mc-backend-error-message
             *ngIf="data.backendErrors"
@@ -18,14 +18,6 @@
             class="ng-untouched ng-pristine ng-invalid"
           >
             <fieldset>
-              <fieldset class="form-group">
-                <input
-                  class="form-control form-control-lg ng-untouched ng-pristine ng-valid"
-                  formControlName="username"
-                  placeholder="Username"
-                  type="text"
-                />
-              </fieldset>
               <fieldset class="form-group">
                 <input
                   class="form-control form-control-lg ng-untouched ng-pristine ng-invalid"
@@ -47,7 +39,7 @@
                 type="submit"
                 [disabled]="data.isSubmitting"
               >
-                Sign up
+                Login
               </button>
             </fieldset>
           </form>
