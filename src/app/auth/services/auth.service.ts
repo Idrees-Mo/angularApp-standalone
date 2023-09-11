@@ -15,11 +15,20 @@ export class AuthService {
 
   fetUser(
     url: string,
-    data: RegisterRequestInterface | LoginRequestInterface
+    data?: RegisterRequestInterface | LoginRequestInterface
   ): Observable<CurrentUserInterface> {
-    return this.http
-      .post<AuthResponseInterface>(url, data)
-      .pipe(map((response) => response.user));
+    return data
+      ? this.http
+          .post<AuthResponseInterface>(url, data)
+          .pipe(map((response) => response.user))
+      : this.http
+          .get<AuthResponseInterface>(url)
+          .pipe(map((response) => response.user));
+  }
+
+  getCurrentUser(): Observable<CurrentUserInterface> {
+    const url = environment.apiUrl + '/user';
+    return this.fetUser(url);
   }
 
   register(data: RegisterRequestInterface): Observable<CurrentUserInterface> {
