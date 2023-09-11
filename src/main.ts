@@ -10,12 +10,16 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { isDevMode } from '@angular/core';
 import { authFeatureKey, authReducer } from './app/auth/store/reducers';
 import * as authEffects from './app/auth/store/effects';
+import { provideRouterStore, routerReducer } from '@ngrx/router-store';
 
 bootstrapApplication(AppComponent, {
   providers: [
     provideHttpClient(),
     provideRouter(appRoutes),
-    provideStore(),
+    provideStore({
+      router: routerReducer,
+    }),
+    provideRouterStore(),
     provideState(authFeatureKey, authReducer),
     provideEffects(authEffects),
     provideStoreDevtools({
@@ -25,5 +29,6 @@ bootstrapApplication(AppComponent, {
       trace: false,
       traceLimit: 75,
     }),
+    provideRouterStore(),
   ],
 });
