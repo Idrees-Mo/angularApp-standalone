@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { RegisterComponent } from './auth/components/register/register.component';
 import { Store } from '@ngrx/store';
 import { authActions } from './auth/store/actions';
 import { selectCurrentUser } from './auth/store/reducers';
-import { AsyncPipe, CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common';
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   standalone: true,
-  imports: [RegisterComponent, RouterOutlet, RouterLink, CommonModule],
+  imports: [RouterOutlet, RouterLink, CommonModule, NavbarComponent],
 })
 export class AppComponent implements OnInit {
   currentUser$ = this.store.select(selectCurrentUser);
