@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'mc-backend-error-message',
-  templateUrl: './backendErrorMessage.html',
+  templateUrl: './backendErrorMessage.component.html',
   standalone: true,
   imports: [CommonModule],
 })

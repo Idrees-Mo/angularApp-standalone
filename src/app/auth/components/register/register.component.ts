@@ -8,7 +8,7 @@ import { selectIsSubmitting, selectBackendErrors } from '../../store/reducers';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { combineLatest } from 'rxjs';
-import { BackendErrorMessage } from 'src/app/shared/components/backendErrorMessage/backendErrorMessage';
+import { BackendErrorMessage } from 'src/app/shared/components/backendErrorMessage/backendErrorMessage.component';
 
 @Component({
   selector: 'mc-register',
